@@ -94,7 +94,7 @@ export class StarDictModel {
   }
 
   static async getRelatedWord(keyword: string) {
-    const result = await db(`select * from stardict where word > @keyword limit 10`, {'@keyword': keyword});
+    const result = await db(`select * from stardict where word >= @keyword limit 10`, {'@keyword': keyword});
     const final = await this.parseDbValues(result);
     return final;
   }

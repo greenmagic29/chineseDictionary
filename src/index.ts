@@ -18,6 +18,12 @@ app.get('/word', async (req: Request, res: Response) => {
   return res.json({ word: results?.[0] ?? {} })
 });
 
+app.get('/search', async (req: Request, res:Response) => {
+  const word: any = req.query.text ?? "wor";
+  const results = await StarDictModel.getRelatedWord(word);
+  return res.json({ results: results });
+})
+
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
